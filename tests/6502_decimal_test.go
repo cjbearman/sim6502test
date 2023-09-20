@@ -21,10 +21,6 @@ func Test6502DecimalOperationWithoutInvalidBCD(t *testing.T) {
 	// Create a new processor, raw memory impl will suffice
 	proc := sim6502.NewProcessor(&sim6502.RawMemory{})
 
-	// We are going to load extended instructions, they won't be used
-	// but this ensures we don't break anything with our extended instruction set
-	proc.LoadExtendedInstructions()
-
 	// Set error on self jump, the test code will branch or jump to same instruction
 	// in the case of an error, this will catch that
 	proc.SetOption(sim6502.ErrorOnSelfJump, true)
