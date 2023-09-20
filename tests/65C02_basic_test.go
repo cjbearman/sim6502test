@@ -53,7 +53,7 @@ func TestBasic65C02Operation(t *testing.T) {
 	}
 
 	executed := uint64(30648048)
-	assert.Equal(executed, proc.InstructionsExecuted, "Expected exactly 30648048 instructions to be executed")
 	rep := proc.GetLastRunPerformance()
+	assert.Equal(executed, rep.InstructionsExecuted, "Expected exactly 30648048 instructions to be executed")
 	t.Logf("Last ran for nanos %d cycles %d effective clock: %d", rep.RanForNanoseconds, rep.RanForCycles, rep.EffectiveClock)
 }
