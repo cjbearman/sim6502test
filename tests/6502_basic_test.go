@@ -31,7 +31,7 @@ func TestBasic6052Operation(t *testing.T) {
 
 	// Address 3469 is the self jump that signals success of the code
 	// set a breakpoint here to record the success
-	successHandler := &Success{t: t}
+	successHandler := &End{t: t}
 	proc.SetBreakpoint(0x3469, successHandler)
 
 	// For debugging

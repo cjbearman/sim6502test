@@ -19,17 +19,17 @@ func (ed *EnableDebug) HandleBreak(proc *sim6502.Processor) error {
 	return nil
 }
 
-// Success is a breakpoint handler that should be set at the code location (PC)
+// End is a breakpoint handler that should be set at the code location (PC)
 // who's execution indicates success of the test
 // It will stop the processor and record the success
-type Success struct {
+type End struct {
 	t       *testing.T
 	success bool
 }
 
-func (s *Success) HandleBreak(proc *sim6502.Processor) error {
+func (s *End) HandleBreak(proc *sim6502.Processor) error {
 	proc.Stop()
 	s.success = true
-	s.t.Log("Success handler called")
+	s.t.Log("End handler called")
 	return nil
 }
