@@ -56,5 +56,5 @@ func Test6502DecimalOperationWithoutInvalidBCD(t *testing.T) {
 	executed := uint64(2519283)
 	rep := proc.GetLastRunPerformance()
 	assert.Equal(executed, rep.InstructionsExecuted, "Expected exactly 2519283 instructions to be executed")
-	t.Logf("Last ran for nanos %d cycles %d effective clock: %d", rep.RanForNanoseconds, rep.RanForCycles, rep.EffectiveClock)
+	t.Logf("Last ran for nanos %d cycles %d effective clock: %dMhz", rep.RanForNanoseconds, rep.RanForCycles, rep.EffectiveClock/1000000)
 }

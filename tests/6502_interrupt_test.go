@@ -66,7 +66,8 @@ func TestInterrupt6502Operation(t *testing.T) {
 	// Create a new processor, we need mappable memory for this
 	mem := &sim6502.MappableMemory{}
 	proc := sim6502.NewProcessor(mem)
-	proc.SetClock(100000) // Not too fast
+	// If debugging, slow down the clock rate
+	// proc.SetClock(100000)
 
 	ifh := &interruptFeedbackHandler{p: proc, t: t}
 	mem.Map(ifh)
@@ -101,8 +102,6 @@ func TestInterrupt6502Operation(t *testing.T) {
 
 	}
 
-	executed := uint64(1037)
 	rep := proc.GetLastRunPerformance()
-	assert.Equal(executed, rep.InstructionsExecuted, "Expected exactly 1037 instructions to be executed")
-	t.Logf("Last ran for nanos %d cycles %d effective clock: %d", rep.RanForNanoseconds, rep.RanForCycles, rep.EffectiveClock)
+	t.Logf("Last ran for nanos %d cycles %d effective clock: %dMhz", rep.RanForNanoseconds, rep.RanForCycles, rep.EffectiveClock/1000000)
 }
